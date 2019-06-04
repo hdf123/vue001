@@ -45,8 +45,7 @@
     beforeMount() {},
 
     mounted() {
-      // $(".btn").after(`<div class="adds">123</div>`);
-      // $(".btn").on("click", ".adds", this.funk);
+      
     },
 
     methods: {
@@ -67,7 +66,7 @@
 <style lang='scss' scoped>
   .headers{
     width:100%;
-    height:100px;
+    height:80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,16 +83,5 @@
   }
   .cycle_box{
     height:300px;
-  }
-  .btn{
-    width:50%;
-    height:60px;
-    background: rgba(99,0,0,0.5);
-    margin-bottom:50px;
-  }
-  .basicUse>>>.adds{
-    width:50%;
-    height:60px;
-    background: rgba(0,99,0,0.5);
   }
 </style>

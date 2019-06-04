@@ -14,6 +14,8 @@
             <div v-for="(m,inds) in tabMain" v-show="cur==inds" :key="inds">{{m}}</div>
         </div>
       </div>
+      <div>{{mas}}</div>
+      <input type="text" v-model="mas" />
 
   </div>
 </template>
@@ -28,7 +30,8 @@
         tabTitle: ['标题一', '标题二', '标题三', '标题四'],
         tabMain: ['内容一', '内容二', '内容三', '内容四'],
         cur: 0, //默认选中第一个
-        userName:null
+        userName:null,
+        mas:"提示文字"
       };
     },
 
