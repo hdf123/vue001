@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 评价星级组件 -->
     <i class="iconfont" :style="fontSize" :class="item" v-for="(item,ind) in stars" :key="ind"></i>
   </div>
 </template>
