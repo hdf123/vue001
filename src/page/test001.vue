@@ -5,6 +5,8 @@
         <input type="number" class="inps" @keyup.13="enter()" @input="changes" placeholder="请输入手机号进行验证"/>
         <button class="btn" @click="changeInt">确认</button>
 
+        <up class="ups"></up>
+
         <ul class="tab-tit">
             <li v-for="(title,ind) in tabTitle" @click="cur=ind" :class="{active:cur==ind}" :key="ind">{{title}}</li>
         </ul>
@@ -17,6 +19,7 @@
 </template>
 
 <script>
+  import up from '@/page/up'
   export default {
     name:'',
     props:[''],
@@ -30,7 +33,7 @@
     },
 
     components: {
-      
+      up
     },
 
     computed: {},
@@ -72,25 +75,30 @@
 
 </script>
 <style lang='' scoped>
-        .tab-tit{
-            width:100%;
-        }
-        .tab-tit li{
-            float: left;
-            width: 25%;
-            padding: 10px 0;
-            text-align: center;
-            background-color:#f4f4f4;
-            cursor: pointer;
-        }
-        .tab-tit .active{
-            background-color: #09f;
-            color: #fff;
-        }
-        .tab-content div{
-            float: left;
-            width: 25%;
-            line-height: 100px;
-            text-align: center;
-        }
+  .tab-tit{
+      width:100%;
+  }
+  .tab-tit li{
+      float: left;
+      width: 25%;
+      padding: 10px 0;
+      text-align: center;
+      background-color:#f4f4f4;
+      cursor: pointer;
+  }
+  .tab-tit .active{
+      background-color: #09f;
+      color: #fff;
+  }
+  .tab-content div{
+      float: left;
+      width: 25%;
+      line-height: 100px;
+      text-align: center;
+  }
+  .ups{
+    width:100%;
+    overflow: auto;
+    border:1px solid red;
+  }
 </style>
