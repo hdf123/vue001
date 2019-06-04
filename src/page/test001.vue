@@ -2,10 +2,14 @@
   <div class='test001'>
       <div>
         <!-- @keyup.enter="enter()"--@keyup.13="enter()" -->
-        <input type="number" class="inps" @keyup.13="enter()" @input="changes" placeholder="请输入手机号进行验证"/>
+        <input type="number" class="inps" @keyup.13="enter()" @input="changes" placeholder="请输入手机号进行验证" />
         <button class="btn" @click="changeInt">确认</button>
 
-        <up class="ups"></up>
+        <!-- <div>{{price}}</div>
+        <div>{{price | myCurrency('￥')}}</div> -->
+
+        <up class="ups_box"></up>
+        <filters class="filters_box"></filters>
 
         <ul class="tab-tit">
             <li v-for="(title,ind) in tabTitle" @click="cur=ind" :class="{active:cur==ind}" :key="ind">{{title}}</li>
@@ -14,14 +18,14 @@
             <div v-for="(m,inds) in tabMain" v-show="cur==inds" :key="inds">{{m}}</div>
         </div>
       </div>
-      <div>{{mas}}</div>
-      <input type="text" v-model="mas" />
+      
 
   </div>
 </template>
 
 <script>
   import up from '@/page/up'
+  import filters from '@/page/filters'
   export default {
     name:'',
     props:[''],
@@ -30,13 +34,12 @@
         tabTitle: ['标题一', '标题二', '标题三', '标题四'],
         tabMain: ['内容一', '内容二', '内容三', '内容四'],
         cur: 0, //默认选中第一个
-        userName:null,
-        mas:"提示文字"
+        userName:null
       };
     },
-
     components: {
-      up
+      up,
+      filters
     },
 
     computed: {},
@@ -99,12 +102,11 @@
       line-height: 100px;
       text-align: center;
   }
-  .ups{
-    box-sizing: border-box;
+  .ups_box,.filters_box{
     width:100%;
-    height:auto;
+    height:250px;
     overflow: auto;
-    border:1px solid red;
+    border-bottom:1px solid red; 
     margin:20px 0;
   }
 </style>

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Bus from "@/js/bus.js";
+import Bus from "@/assets/js/bus.js";
 export default {
   name: "",
   data() {

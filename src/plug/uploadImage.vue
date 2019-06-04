@@ -31,8 +31,7 @@
 </template>
 
 <script>
-  // import EXIF from '@/assets/lib/exif'
-  import EXIF from '@/js/exif'
+  import EXIF from '@/assets/js/exif'
   const client = navigator.userAgent
   const isAndroid = client.indexOf('Android') > -1 || client.indexOf('Adr') > -1
   export default {
@@ -260,7 +259,7 @@
     width:calc(33.3% - .1rem - .1rem/3 );
     width:-webkit-calc(33.3% - .1rem - .1rem/3 );
     width:-moz-calc(33.3% - .1rem - .1rem/3 );
-    height: 2.2rem;
+    height:2.2rem;
     margin: 0 0 .2rem 0.1rem;
     background: url('../assets/img/upload-add.png') no-repeat center center;
     -webkit-background-size: 100% 100%;
@@ -373,7 +372,7 @@
     width:calc(33.3% - .1rem - .1rem/3 );
     width:-webkit-calc(33.3% - .1rem - .1rem/3 );
     width:-moz-calc(33.3% - .1rem - .1rem/3 );
-    height: 2.2rem;
+    height:2.2rem;
     margin: 0 0 .2rem .1rem;
     overflow: hidden;
     float: left;

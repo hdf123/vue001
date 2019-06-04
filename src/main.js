@@ -4,10 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import './css/base.css'
-import './css/icon/iconfont.css'
+import './assets/css/base.css'
+import './assets/css/icon/iconfont.css'
 import 'lib-flexible/flexible'
 
+import * as filters from './plug/filters'
+Object.keys(filters).forEach(key => {
+ Vue.filter(key, filters[key])
+})
 
 Vue.config.productionTip = false
 
