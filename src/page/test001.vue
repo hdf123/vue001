@@ -97,8 +97,11 @@
       text-align: center;
   }
   .ups{
+    box-sizing: border-box;
     width:100%;
+    height:auto;
     overflow: auto;
     border:1px solid red;
+    margin:20px 0;
   }
 </style>

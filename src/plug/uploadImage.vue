@@ -1,3 +1,4 @@
+// 上传图片
 <template>
   <div class="uploadImage">
     <div id="upload-house-photos">
