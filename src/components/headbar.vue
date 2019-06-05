@@ -36,14 +36,5 @@
 
 </script>
 <style lang='scss' scoped>
-  .headers{
-    width:100%;
-    height:100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color:white;
-    font-size:30px;
-    background:#FFB94A;
-  }
+
 </style>

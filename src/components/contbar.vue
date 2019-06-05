@@ -1,11 +1,12 @@
 <template>
   <div class='contbar'>
-    <div @click="basicUse">基本使用</div>
-
-    <router-link tag="div" :to="{path:'/computedk'}">计算属性</router-link>
-
-    <router-link tag="div" :to="{path:'/test001'}">模拟操作</router-link>
-    
+    <div class="heas">
+      <!-- <div @click="basicUse()">基本使用</div> -->
+      <router-link tag="div" :to="{path:'/basicUse'}">基本使用</router-link>
+      <router-link tag="div" :to="{path:'/computedk'}">计算属性</router-link>
+      <router-link tag="div" :to="{path:'/test001'}">模拟操作</router-link>
+    </div>
+    <router-view class="boxs"></router-view>
   </div>
 </template>
 
@@ -16,7 +17,7 @@
     props:[''],
     data () {
       return {
-        
+        inds:''
       };
     },
     // 注册组件
@@ -33,12 +34,11 @@
     methods: {
       basicUse(){
         // 字符串
-        this.$router.push('/basicUse');
+        // this.$router.push('/basicUse');
         // 对象
         // this.$router.push({ path: '/basicUse' })
         // 命名的路由
         // this.$router.push({ name: 'basicUse', params: { userId: 22 }})
-
       }
     },
     //监听
@@ -48,22 +48,27 @@
 
 </script>
 <style lang='scss' scoped>
-  .contbar{
-    width:100%;
-    position:absolute;
-    top:100px;
-    left:auto;
-    right:auto;
-    bottom:100px;
+.contbar{
+  display:flex;
+}
+  .heas{
+    width:25%;
+    height:100%;
     overflow: auto;
-    background:rgba(0,0,0,0.5);
     >div{
+      width:100%;
       height:80px;
-      color:white;
+      color:rgba(0,0,0,0.5);
       font-size:30px;
       line-height:80px;
-      padding-left:20px;
-      border-bottom:1px solid  rgb(255, 0, 0);
+      text-align:center;
+      border-bottom:1px solid  rgba(255,255,255,0.8);
     }
+    .router-link-active{
+      color:rgba(0,0,0,0.8);
+    }
+  }
+  .boxs{
+    width:75%
   }
 </style>

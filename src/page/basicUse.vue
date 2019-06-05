@@ -1,10 +1,11 @@
 <template>
   <div class='basicUse'>
-    <header class="headers">页面传参</header>
+    <!-- 组件一 -->
     <fatherTheSon class="fatherTheSon_box" :lists="'今晚打老虎'"></fatherTheSon>
     <div>子组件二传出来的数据---{{out}}{{as}}</div>
+    <!-- 组件二 -->
     <sonTheFather class="sonTheFather_box" @closesd="closesdk"></sonTheFather>
-
+    <!-- 组件三-->
     <!-- <cycle class="cycle_box">slot不具名插槽传值</cycle> -->
     <cycle class="cycle_box">
       <div slot="header">我是传入的头部</div>
@@ -78,7 +79,7 @@
     width:100%;
     height:200px;
     overflow: auto;
-    background:rgba(0,0,0,0.1);
+    background:rgba(199,199,199,0.3);
     margin-bottom:50px;
   }
   .cycle_box{

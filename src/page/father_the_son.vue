@@ -44,8 +44,7 @@ export default {
 .father_the_son {
     > div {
         widows: 100%;
-        height: 50px;
-        line-height: 50px;
+        padding:10px;
         border-bottom: 1px solid red;
     }
 }

@@ -45,5 +45,10 @@ import Bus from "@/assets/js/bus.js";
 
 </script>
 <style lang='scss' scoped>
-
+  .son_the_father{
+    >div{
+      padding:10px;
+      border-bottom:1px solid red;
+    }
+  }
 </style>

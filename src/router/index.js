@@ -12,20 +12,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: home
-    },{
-      path: '/computedk',
-      name: 'computedk',
-      component: computedk
-		},{
-      path: '/basicUse',
-      name: 'basicUse',
-      component: basicUse
+      component: home,
+      children:[
+        {path: '/computedk',name: 'computedk',component: computedk},
+        {path: '/basicUse',name: 'basicUse',component: basicUse},
+        {path: '/test001',name: 'test001',component: test001}
+      ]
     }
-    ,{
-      path: '/test001',
-      name: 'test001',
-      component: test001
-		}
   ]
 })
