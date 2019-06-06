@@ -55,6 +55,7 @@
     width:25%;
     height:100%;
     overflow: auto;
+    background: rgba(0,199,199,0.5);
     >div{
       width:100%;
       height:80px;

@@ -16,9 +16,9 @@
           <td>{{item.name}}</td>
           <td>
             <div>
-              <button @click="reduce(index)">-</button>
+              <button @click="reduce(ind)">-</button>
               {{item.count}}
-              <button @click="add(index)">+</button>
+              <button @click="add(ind)">+</button>
             </div>
           </td>
           <td>{{item.price}}</td>
@@ -99,15 +99,17 @@
 </script>
 <style lang='scss' scoped>
   .computedk{
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.1);
   }
   table{
     width:100%;
+    margin-bottom:20px;
     tr{
       width:100%;
       >td{
         text-align: center;
-        // border:1px solid rgba(0,0,0,0.5);
+        padding:5px 10px;
+        border:1px solid rgba(0,0,0,0.5);
       }
       >td:nth-child(1){
         width:10%;
