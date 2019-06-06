@@ -8,11 +8,11 @@ import test001 from '@/page/test001'
 Vue.use(Router)
 
 export default new Router({
+  // mode:"history",//去除地址中的#
+  // base: '/dist/',
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: home,
+      path: '/',name: 'home', component: home,
       children:[
         {path: '/computedk',name: 'computedk',component: computedk},
         {path: '/basicUse',name: 'basicUse',component: basicUse},

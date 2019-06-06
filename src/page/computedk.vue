@@ -22,9 +22,11 @@
           <td>{{item.id}}</td>
           <td>{{item.name}}</td>
           <td>
-            <button @click="reduce(index)">-</button>
-            {{item.count}}
-            <button @click="add(index)">+</button>
+            <div>
+              <button @click="reduce(index)">-</button>
+              {{item.count}}
+              <button @click="add(index)">+</button>
+            </div>
           </td>
           <td>{{item.price}}</td>
           <td>{{item.count * item.price}}</td>
@@ -116,32 +118,40 @@
 
 </script>
 <style lang='scss' scoped>
+*{
+  box-sizing: border-box;
+}
   .computedk{
     background:rgba(0,0,0,0.5);
   }
   table{
     width:100%;
-  }
-  tr{
-    width:100%;
-    >td{
-      text-align: center;
-      border:1px solid rgba(0,0,0,0.5);
-    }
-    >td:nth-child(1){
-      width:10%;
-    }
-    >td:nth-child(2){
-      width:15%;
-    }
-    >td:nth-child(3){
-      width:35%;
-    }
-    >td:nth-child(4){
-      width:20%;
-    }
-    >td:nth-child(5){
-      width:20%;
+    tr{
+      width:100%;
+      >td{
+        text-align: center;
+        border:1px solid rgba(0,0,0,0.5);
+      }
+      >td:nth-child(1){
+        width:10%;
+      }
+      >td:nth-child(2){
+        width:15%;
+      }
+      >td:nth-child(3){
+        width:35%;
+        >div{
+          width:100%;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      >td:nth-child(4){
+        width:20%;
+      }
+      >td:nth-child(5){
+        width:20%;
+      }
     }
   }
 </style>

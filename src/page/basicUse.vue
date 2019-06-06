@@ -79,7 +79,7 @@
     width:100%;
     height:200px;
     overflow: auto;
-    background:rgba(199,199,199,0.3);
+    background:rgba(199,199,199,0.1);
     margin-bottom:50px;
   }
   .cycle_box{

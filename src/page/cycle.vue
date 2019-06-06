@@ -2,6 +2,7 @@
   <div class="content">
     <h3 class="hea">组件三</h3>
     <span v-for="(item, index) in datas" class="btn" :class="{active:index==isShow}" @click="changeColor(index)" :key="index">{{item.city}}</span>
+    
     <hr />
 
     <div class="divs">
@@ -70,8 +71,8 @@ export default {
   }
 }
 .statesA{
-  color:yellow;
-  border: 2px solid yellow;
+  color:rgb(0, 255, 255);
+  border: 2px solid rgb(0, 255, 255);
 }
 .statesB{
   color:lime;
