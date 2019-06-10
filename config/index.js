@@ -6,11 +6,33 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api1': {
+        //设置你调用的接口域名和端口号 别忘了加http
+        target: 'http://v.juhe.cn',//笑话大全
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api1': ''//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
+        }
+      },
+      '/api2': {
+        target: 'http://web.juhe.cn:8080',//星座运势
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api2': ''
+        }
+      },
+      '/api3': {
+        target: 'http://v.juhe.cn',//电影票
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api3': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

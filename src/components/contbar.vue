@@ -3,8 +3,11 @@
     <div class="heas">
       <!-- <div @click="basicUse()">基本使用</div> -->
       <router-link tag="div" :to="{path:'/basicUse'}">基本使用</router-link>
-      <router-link tag="div" :to="{path:'/computedk'}">计算属性</router-link>
+      <router-link tag="div" :to="{path:'/computedk'}">价格计算价格计算</router-link>
       <router-link tag="div" :to="{path:'/test001'}">模拟操作</router-link>
+      <router-link tag="div" :to="{path:'/test002'}">数据请求</router-link>
+      <!-- <router-link tag="div" :to="{path:'/test003'}">星座测试</router-link>
+      <router-link tag="div" :to="{path:'/test004'}">电影票</router-link> -->
     </div>
     <router-view class="boxs"></router-view>
   </div>
@@ -64,12 +67,19 @@
       line-height:80px;
       text-align:center;
       border-bottom:1px solid  rgba(255,255,255,0.8);
+
+      overflow:hidden; /*超出隐藏*/
+    	display:-webkit-box; /*将对象作为弹性伸缩盒子模型显示。*/
+    	-webkit-box-orient:vertical;/*从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式）*/
+    	-webkit-line-clamp:1; /*超出2行用省略号表示*/
     }
     .router-link-active{
       color:rgba(0,0,0,0.8);
     }
   }
   .boxs{
-    width:75%
+    width:75%;
+    height: 100%;
+    overflow: auto;
   }
 </style>
