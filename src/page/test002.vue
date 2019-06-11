@@ -1,13 +1,14 @@
 <template>
   <div class='requestk'>
-    <!-- <div class="box" v-for="(item,ind) in data" :key="ind">
-      <template v-if="ind<9">0{{ind+1}}:{{item.content}}</template>
-      <template v-else>{{ind+1}}:{{item.content}}</template>
+    <!-- <div class="box">
+      <router-link tag="div" :to="{path:'/joke'}">笑话大全</router-link>
+      <router-link tag="div" :to="{path:'/constellation'}">星座测试</router-link>
+      <router-link tag="div" :to="{path:'/movie'}">电影票</router-link>
     </div> -->
     <div class="box">
-      <router-link tag="div" :to="{path:'/test002/joke'}">笑话大全</router-link>
-      <router-link tag="div" :to="{path:'/test002/constellation'}">星座测试</router-link>
-      <router-link tag="div" :to="{path:'/test002/movie'}">电影票</router-link>
+      <router-link tag="div" :to="{path:'/home/test002/joke'}">笑话大全</router-link>
+      <router-link tag="div" :to="{path:'/home/test002/constellation'}">星座测试</router-link>
+      <router-link tag="div" :to="{path:'/home/test002/movie'}">电影票</router-link>
     </div>
     <router-view class="boxs"></router-view>
 

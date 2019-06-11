@@ -11,23 +11,48 @@ import movie from '@/page/movie'
 
 Vue.use(Router)
 
+// export default new Router({
+//   mode:"history",//去除地址中的#
+//   // base: '/dist/',
+//   routes: [
+//     {path:"/",redirect:'/home'},//重新定向
+//     {path: '/home',name: 'home', component: home,
+//       children:[
+//         {path:"/",redirect:'/basicUse'},//重新定向
+//         {path: '/computedk',name: 'computedk',component: computedk},
+//         {path: '/basicUse',name: 'basicUse',component: basicUse},
+//         {path: '/test001',name: 'test001',component: test001},
+//         {path: '/test002',name: 'test002',component: test002,
+//         children:[
+//           {path:"/",redirect:'/joke'},//重新定向
+//           // {path:"/",redirect:{name:'joke'}},//重新定向
+//           {path: '/joke',name: 'joke',component: joke},
+//           {path: '/constellation',name: 'constellation',component: constellation},
+//           {path: '/movie',name: 'movie',component: movie},
+//         ]
+//       }
+//       ]
+//     }
+//   ]
+// })
+
+
 export default new Router({
   // mode:"history",//去除地址中的#
   // base: '/dist/',
   routes: [
-    {
-      path: '/',name: 'home', component: home,
+    {path:"/",redirect:{name:'basicUse'}},//重新定向
+    {path: '/home',name: 'home', component: home,
       children:[
-        {path: '/computedk',name: 'computedk',component: computedk},
-        {path: '/basicUse',name: 'basicUse',component: basicUse},
-        {path: '/test001',name: 'test001',component: test001},
-        {path: '/test002',name: 'test002',component: test002,
+        {path: '/home/computedk',name: 'computedk',component: computedk},
+        {path: '/home/basicUse',name: 'basicUse',component: basicUse},
+        {path: '/home/test001',name: 'test001',component: test001},
+        {path: '/home/test002',name: 'test002',component: test002,
         children:[
-          // {path:"/test002",redirect:'/test002/joke'},//重新定向
-          {path:"/test002",redirect:{name:'joke'}},//重新定向
-          {path: '/test002/joke',name: 'joke',component: joke},
-          {path: '/test002/constellation',name: 'constellation',component: constellation},
-          {path: '/test002/movie',name: 'movie',component: movie},
+          {path:"/",redirect:{name:'joke'}},//重新定向
+          {path: '/home/test002/joke',name: 'joke',component: joke},
+          {path: '/home/test002/constellation',name: 'constellation',component: constellation},
+          {path: '/home/test002/movie',name: 'movie',component: movie},
         ]
       }
       ]
