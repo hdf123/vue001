@@ -1,6 +1,7 @@
 <template>
   <div class='requestk'>
-    <div>
+    <div @click="movie()" class="movie">看电影去</div>
+    <div class="title_box">
       <input type="text" class="inps" @keyup.13="enter()" ref="getValue" placeholder="请输入你的星座" />
       <button class="btn" @click="making">今日运势</button>
     </div>
@@ -97,6 +98,19 @@
         }).catch(err=>{
           console.log(err);
         })
+      },
+      movie:function(){
+        var url=this.APT3+'/wepiao/query'
+        this.$axios.get(url,{
+          params:{
+            key:"3de4149fc68371b91e775f98bf5714b6"
+          }
+        }).then(res=>{
+          console.log(res.data);
+          location.href=res.data.result.h5url;
+        }).catch(err=>{
+          console.log(err);
+        })
       }
     },
 
@@ -106,9 +120,23 @@
 
 </script>
 <style lang='scss' scoped>
-  .box{
-    padding:25px 20px;
-    border-bottom:1px solid #dddddd;
+  .movie{
+    width:100%;
+    height:80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .title_box{
+    display: flex;
+    height:70px;
+    >input{
+      width:75%;
+      outline: none;
+    }
+    >button{
+      width:25%;
+    }
   }
   ul{
     >li{
@@ -122,7 +150,7 @@
         line-height:50px;
         overflow: hidden;
       }
-      >div:nth-child(1)::after{
+      >div:nth-child(1):after{
         display: inline-block;
         width: 100%;
         content: '';

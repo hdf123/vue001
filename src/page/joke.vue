@@ -40,6 +40,7 @@
         }
       }).then(res=>{
         console.log(res.data);
+        if(res.data.resultcode==112) alert(res.data.reason);
         this.data=res.data.result.data;
 
       }).catch(err=>{
