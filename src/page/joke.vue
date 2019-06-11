@@ -24,11 +24,11 @@
     beforeMount() {},
 
     mounted() {
-      // var times = Date.parse( new Date() ).toString();
-      //     times = times.substr(0,10);
-      var times = (new Date()).valueOf(); //1280977330748
-          times = new Date().getTime();   // 同上
-          times = Math.round(new Date().getTime()/1000).toString();
+      var times = Date.parse( new Date() ).toString();
+          times = times.substr(0,10);
+      // var times = (new Date()).valueOf(); //1280977330748
+      //     times = new Date().getTime();   // 同上
+      //     times = Math.round(new Date().getTime()/1000).toString();
       var url=this.APT1+'/joke/content/list.php'
       this.$axios.get(url,{
         params:{

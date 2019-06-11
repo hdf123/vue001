@@ -1,12 +1,11 @@
 <template>
   <div class='test001'>
       <div>
-        <!-- @keyup.enter="enter()"--@keyup.13="enter()" -->
-        <input type="number" class="inps" @keyup.13="enter()" @input="changes" placeholder="请输入手机号进行验证" />
-        <button class="btn" @click="changeInt">确认</button>
-
-        <!-- <div>{{price}}</div>
-        <div>{{price | myCurrency('￥')}}</div> -->
+        <div class="boxks">
+          <!-- @keyup.enter="enter()"--@keyup.13="enter()" -->
+          <input type="number" class="inps" @keyup.13="enter()" @input="changes" placeholder="请输入手机号进行验证" />
+          <button class="btn" @click="changeInt">确认</button>
+        </div>
 
         <up class="ups_box"></up>
         <filters class="filters_box"></filters>
@@ -80,7 +79,18 @@
   }
 
 </script>
-<style lang='' scoped>
+<style lang='scss' scoped>
+  .boxks{
+    width:100%;
+    height:70px;
+    display: flex;
+    >input{
+      width:75%;
+    }
+    >button{
+      width:25%;
+    }
+  }
   .tab-tit{
       width:100%;
   }
