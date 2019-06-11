@@ -17,6 +17,7 @@ Vue.prototype.qs = QS;
 Vue.prototype.APT1='/api1'
 Vue.prototype.APT2='/api2'
 Vue.prototype.APT3='/api3'
+Vue.prototype.APT4='/api4'
 
 
 import * as filters from './plug/filters'

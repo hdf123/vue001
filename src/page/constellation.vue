@@ -1,6 +1,5 @@
 <template>
   <div class='requestk'>
-    <div @click="movie()" class="movie">看电影去</div>
     <div class="title_box">
       <input type="text" class="inps" @keyup.13="enter()" ref="getValue" placeholder="请输入你的星座" />
       <button class="btn" @click="making">今日运势</button>
@@ -51,6 +50,7 @@
           <div>{{data.summary}}</div>
         </li>
       </ul>
+      <div @click="movie()" class="movie">看电影去</div>
   </div>
 </template>
 
@@ -78,8 +78,11 @@
         this.making();
       },
       making:function(){
-        console.log(this.$refs.getValue.value);
-        this.ajaxds(this.$refs.getValue.value);
+        var constellation=this.$refs.getValue.value;
+        if(constellation.indexOf("座") <= -1){
+          constellation=constellation+"座"
+        }
+        this.ajaxds(constellation);
       },
       ajaxds:function(constellation){
         var url=this.APT2+'/constellation/getAll'
@@ -91,10 +94,11 @@
           }
         }).then(res=>{
           console.log(res.data);
+          if(res.data.resultcode==201){
+            return alert("输入错误，请重新输入");
+          }
           this.data=res.data;
           this.isShow=true;
-          console.log(this.data);
-          console.log(this.data.name);
         }).catch(err=>{
           console.log(err);
         })
@@ -120,12 +124,20 @@
 
 </script>
 <style lang='scss' scoped>
+  .requestk{
+    position: relative;
+  }
   .movie{
     width:100%;
     height:80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color:rgba(0,0,0,0.6);
+    background: rgba(199,199,199,0.5);
+    position: absolute;
+    left:0;
+    bottom:0;
   }
   .title_box{
     display: flex;

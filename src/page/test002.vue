@@ -3,6 +3,7 @@
     <div class="box">
       <router-link tag="div" :to="{path:'/home/test002/joke'}">笑话大全</router-link>
       <router-link tag="div" :to="{path:'/home/test002/constellation'}">星座测试</router-link>
+      <router-link tag="div" :to="{path:'/home/test002/aa'}">万维易源</router-link>
     </div>
     <router-view class="boxks"></router-view>
 

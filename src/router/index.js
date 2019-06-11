@@ -7,6 +7,7 @@ import test001 from '@/page/test001'
 import test002 from '@/page/test002'
 import joke from '@/page/joke'
 import constellation from '@/page/constellation'
+import aa from '@/page/aa'
 
 Vue.use(Router)
 export default new Router({
@@ -24,7 +25,8 @@ export default new Router({
         children:[
           {path:"/",redirect:{name:'joke'}},//重新定向
           {path: '/home/test002/joke',name: 'joke',component: joke},
-          {path: '/home/test002/constellation',name: 'constellation',component: constellation}
+          {path: '/home/test002/constellation',name: 'constellation',component: constellation},
+          {path: '/home/test002/aa',name: 'aa',component: aa}
         ]
       }
       ]
