@@ -33,8 +33,7 @@ module.exports = {
         }
       },
       '/api4': {
-        // http://route.showapi.com/341-2
-        target: 'http://route.showapi.com',//笑话大全---万维易源
+        target: 'http://route.showapi.com',//万维易源
         changeOrigin: true,
         pathRewrite: {
           '^/api4': ''

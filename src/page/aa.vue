@@ -45,18 +45,20 @@
             }
             return num;
         }
-      var url=this.APT4+'/341-2'
+      var url=this.APT4+'/1623-2'
       this.$axios.get(url,{
         params:{
           showapi_timestamp:times,//客户端时间。 
           showapi_appid:"97504",//易源应用id
           showapi_sign:"ff9e442404ae485eb5b5e993bfe42566",//数字签名
-          page:"1",
-          maxResult:"20"
+          page:"",
+          question:"地球",
+          isAnswer:"是"
         }
       }).then(res=>{
-        console.log(res.data.showapi_res_body.contentlist);
-        this.data=res.data.showapi_res_body.contentlist;
+        console.log(res.data);
+        this.data=res.data.showapi_res_body.pagebean.contentlist;
+        console.log(this.data);
       }).catch(err=>{
         console.log(err);
       })
