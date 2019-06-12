@@ -7,6 +7,7 @@ import router from './router'
 import './assets/css/base.css'
 import './assets/css/icon/iconfont.css'
 import 'lib-flexible/flexible'
+import scroll from './scroll/scroll.js'
 
 // 引入axios，并加到原型链中
 import axios from 'axios';
@@ -26,6 +27,7 @@ Object.keys(filters).forEach(key => {
 })
 
 Vue.config.productionTip = false
+Vue.use(scroll)
 
 window.onresize = setHtmlFontSize;
 function setHtmlFontSize(){

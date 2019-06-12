@@ -5,7 +5,7 @@
       <router-link tag="div" :to="{path:'/home/test002/constellation'}">星座测试</router-link>
       <router-link tag="div" :to="{path:'/home/test002/aa'}">万维易源</router-link>
     </div>
-    <router-view class="boxks"></router-view>
+    <router-view></router-view>
 
   </div>
 </template>
@@ -51,9 +51,9 @@
   .router-link-active{
     color:rgba(175, 52, 52, 0.8);
   }
-  .boxks{
-    width:100%;
-    height:93%;
-    overflow: auto;
-  }
+  // .boxks{
+  //   width:100%;
+  //   height:93%;
+  //   overflow: hidden;
+  // }
 </style>

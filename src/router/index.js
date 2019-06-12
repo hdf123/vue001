@@ -5,6 +5,7 @@ import computedk from '@/page/computedk'
 import basicUse from '@/page/basicUse'
 import test001 from '@/page/test001'
 import test002 from '@/page/test002'
+import test003 from '@/page/test003'
 import joke from '@/page/joke'
 import constellation from '@/page/constellation'
 import aa from '@/page/aa'
@@ -22,13 +23,14 @@ export default new Router({
         {path: '/home/basicUse',name: 'basicUse',component: basicUse},
         {path: '/home/test001',name: 'test001',component: test001},
         {path: '/home/test002',name: 'test002',component: test002,
-        children:[
-          {path:"/",redirect:{name:'joke'}},//重新定向
-          {path: '/home/test002/joke',name: 'joke',component: joke},
-          {path: '/home/test002/constellation',name: 'constellation',component: constellation},
-          {path: '/home/test002/aa',name: 'aa',component: aa}
-        ]
-      }
+          children:[
+            {path:"/",redirect:{name:'joke'}},//重新定向
+            {path: '/home/test002/joke',name: 'joke',component: joke},
+            {path: '/home/test002/constellation',name: 'constellation',component: constellation},
+            {path: '/home/test002/aa',name: 'aa',component: aa}
+          ]
+        },
+        {path: '/home/test003',name: 'test003',component: test003},
       ]
     }
   ]
