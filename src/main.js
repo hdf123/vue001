@@ -7,7 +7,7 @@ import router from './router'
 import './assets/css/base.css'
 import './assets/css/icon/iconfont.css'
 import 'lib-flexible/flexible'
-import scroll from './scroll/scroll.js'
+import scroll from './assets/js/scroll.js'
 
 // 引入axios，并加到原型链中
 import axios from 'axios';
@@ -21,7 +21,7 @@ Vue.prototype.APT3='/api3'
 Vue.prototype.APT4='/api4'
 
 
-import * as filters from './plug/filters'
+import * as filters from './assets/js/filters'
 Object.keys(filters).forEach(key => {
  Vue.filter(key, filters[key])
 })
