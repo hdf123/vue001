@@ -121,11 +121,11 @@
     watch: {}
 
   }
-
 </script>
+
 <style lang='scss' scoped>
   .requestk{
-    
+
   }
   .movie{
     width:100%;

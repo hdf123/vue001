@@ -8,6 +8,7 @@
       <router-link tag="div" :to="{path:'/home/test002'}">聚合数据</router-link>
       <router-link tag="div" :to="{path:'/home/test003'}">万维易源</router-link>
       <router-link tag="div" :to="{path:'/home/test004'}">上拉加载</router-link>
+      <router-link tag="div" :to="{path:'/home/test005'}">swiper</router-link>
     </div>
 
     <router-view class="boxs"></router-view>

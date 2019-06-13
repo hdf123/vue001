@@ -8,6 +8,9 @@ import './assets/css/base.css'
 import './assets/css/icon/iconfont.css'
 import 'lib-flexible/flexible'
 import scroll from './assets/js/scroll.js'
+//挂载swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import 'swiper/dist/css/swiper.css'
 
 // 引入axios，并加到原型链中
 import axios from 'axios';
@@ -28,6 +31,7 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 Vue.use(scroll)
+Vue.use(VueAwesomeSwiper)
 
 window.onresize = setHtmlFontSize;
 function setHtmlFontSize(){

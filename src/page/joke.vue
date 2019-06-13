@@ -1,13 +1,17 @@
 <template>
   <div class='requestk'>
-    <div class="box" v-for="(item,ind) in data" :key="ind">
-      <template v-if="ind<9">0{{ind+1}}:{{item.content}}</template>
-      <template v-else>{{ind+1}}:{{item.content}}</template>
+    <div class="wrapper" ref="wrapper">
+      <ul class="main">
+        <li v-for="(item, index) in 50" :key="index">{{index+1}}</li>
+        <!-- <li v-for="(item, index) in data" :key="index">{{index+1}}{{item.content}}</li> -->
+        <div class="loading" v-show="!loading">加载中....</div>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
   export default {
     name:'',
     props:[''],
@@ -16,7 +20,7 @@
         data:[],
         page:1,//页数
         pagesize:10,//每次获取数量
-        off_on:false
+        loading:true,
       };
     },
 
@@ -27,52 +31,42 @@
     beforeMount() {},
 
     created(){
-      window.addEventListener('scroll', this.onScroll,true);
+      this.$nextTick(() => {
+        if (!this.scroll) {
+          this.scroll = new BScroll('.wrapper', {
+            pullDownRefresh:{
+              threshold: 80,
+              stop:10
+            }
+          })
+          this.scroll.on('touchEnd', (pos) => {
+            // 下拉刷新
+            if (pos.y > 50) {
+              console.log(3333333333333333);
+              // this.kdata()
+            }
+            //上拉加载
+            if(pos.y <= (this.scroll.maxScrollY + 100) && this.loading) {
+              this.loading = false
+              this.page++;
+              this.kdata();
+              setTimeout(()=>{
+                this.loading = true
+              },1000)
+            }
+          })
+        }else{
+          this.scroll.refresh()
+        }
+      })
     },
 
     mounted() {
-      this.kdata();
-      /*
-      var times = Date.parse( new Date() ).toString();
-          times = times.substr(0,10);
-      // var times = (new Date()).valueOf(); //1280977330748
-      //     times = new Date().getTime();   // 同上
-      //     times = Math.round(new Date().getTime()/1000).toString();
-      var url=this.APT1+'/joke/content/list.php'
-      this.$axios.get(url,{
-        params:{
-          key:"e280d4235744d275aa6ca4fda0ae182e",
-          page:2,//当前页数,默认1
-          pagesize:5,	//每次返回条数,默认1,最大20
-          sort:'desc',//类型，desc:指定时间之前发布的，asc:指定时间之后发布的
-          time:times//	时间戳（10位）
-        }
-      }).then(res=>{
-        console.log(res.data);
-        if(res.data.resultcode==112) alert(res.data.reason);
-        this.data=res.data.result.data;
-
-      }).catch(err=>{
-        console.log(err);
-      })
-      */
+      this.kdata()
+      console.log(this.data);
     },
 
     methods: {
-      onScroll() {
-        console.log("1---"+$(".requestk")[0].scrollTop);
-        console.log("2---"+$(".requestk").height());
-        console.log("3---"+$(".requestk")[0].scrollHeight);
-        if (($(".requestk")[0].scrollTop + $(".requestk").height() + 60) >= $(".requestk")[0].scrollHeight) {
-            //这里用 [ off_on ] 来控制是否加载 （这样就解决了 当上页的条件满足时，一下子加载多次的问题啦）
-            if (this.off_on) {
-                this.off_on = false;
-                this.page++;
-                console.log("第"+page+"页");
-                this.kdata();  //调用执行上面的加载方法
-            }
-        }
-      },
       kdata(){
         var times = Date.parse( new Date() ).toString();
             times = times.substr(0,10);
@@ -87,13 +81,14 @@
           }
         }).then(res=>{
           console.log(res.data);
-          if(res.data.resultcode==112) alert(res.data.reason);
-          this.data=res.data.result.data;
-          this.off_on = true; 
+          // if(res.data.resultcode==112) alert(res.data.reason);
+          this.data=this.data.concat(res.data.result.data)
+          this.$set(this.data)
         }).catch(err=>{
           console.log(err);
         })
       }
+
     },
 
     watch: {}
@@ -107,8 +102,15 @@
     height:93%;
     overflow: auto;
   }
-  .box{
-    padding:25px 20px;
-    border-bottom:1px solid #dddddd;
+  .wrapper{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .main{
+      >li{
+        height:100px;
+        border-top:1px solid red;
+      }
   }
 </style>
