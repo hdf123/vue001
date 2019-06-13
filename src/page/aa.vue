@@ -53,7 +53,7 @@
           showapi_sign:"ff9e442404ae485eb5b5e993bfe42566",//数字签名
           page:"",
           question:"地球",
-          isAnswer:"是"
+          isAnswer:true
         }
       }).then(res=>{
         console.log(res.data);

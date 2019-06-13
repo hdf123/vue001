@@ -6,6 +6,7 @@ import basicUse from '@/page/basicUse'
 import test001 from '@/page/test001'
 import test002 from '@/page/test002'
 import test003 from '@/page/test003'
+import test004 from '@/page/test004'
 import joke from '@/page/joke'
 import constellation from '@/page/constellation'
 import aa from '@/page/aa'
@@ -31,6 +32,7 @@ export default new Router({
           ]
         },
         {path: '/home/test003',name: 'test003',component: test003},
+        {path: '/home/test004',name: 'test004',component: test004},
       ]
     }
   ]

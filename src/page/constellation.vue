@@ -125,7 +125,7 @@
 </script>
 <style lang='scss' scoped>
   .requestk{
-    position: relative;
+    
   }
   .movie{
     width:100%;

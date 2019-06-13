@@ -1,86 +1,82 @@
 <template>
-    <div class="content">
-      <scroll :on-refresh="onRefresh" :on-infinite="onInfinite" :isLading="isLading" :reset="reset">
-        <ul>
-          <li v-for="item in oData" :key="item.id">{{item}}</li>
-        </ul>
-      </scroll>
+  <div class='requestk'>
+    <div class="box" v-for="(item,ind) in data" :key="ind">
+      <img :src="item.img" alt="">
     </div>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'index',
-  data () {
-    return {
-      isLading: 2, // 0:加载完成，1:加载中，2:提示上拉加载
-      reset: 0, // 0初始化
-      paging: {count: 10, page: 1}, // 请求条数和当前请求页
-      // 模拟数据
-      getData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
-      oData: []
-    }
-  },
-  mounted () {
-    this.getFun()
-  },
-  methods: {
-    /* 下拉刷新 */
-    onRefresh (done) {
-      this.getFun(0, done)
+  export default {
+    name:'',
+    props:[''],
+    data () {
+      return {
+        data:[]
+      };
     },
-    /* 上拉加载 */
-    onInfinite (done) {
-      if (this.isLading === 2) {
-        this.paging.page++
-        this.isLading = 1
-        this.getFun(1, done)
-      }
-    },
-    // 数据请求
-    /* nums=0:初始化数据 */
-    getFun (nums, done) {
-      if (nums === 0) {
-        this.reset = 0
-        this.oData = []
-        this.isLading = 2
-        this.paging.page = 1
-      }
-      if (this.isLading !== 0) {
-        let pageUp = ((this.paging.page - 1) * this.paging.count)
-        let oSend = this.getData.slice(pageUp, pageUp + this.paging.count)
-        console.log(oSend)
-        if (oSend.length > 0) {
-          this.oData = this.oData.concat(oSend)
-          this.isLading = 2 // 数据请求完成后请求状态修改
-        } else {
-          this.isLading = 0 // 数据请求完成后请求状态修改
-        }
-      }
-      /* 请求完成后初始化上拉或下拉 */
-      if (done) { done() }
-    }
-  }
-}
-</script>
 
-<style scoped>
-  .content, ul{
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
+    components: {},
+
+    computed: {},
+
+    beforeMount() {},
+
+    mounted() {
+      var timestamp=new Date().getTime();//当前时间戳
+      var times=getMyDate(timestamp);
+      console.log(getMyDate(timestamp));//2019-05-25 09:02:36:305
+        function getMyDate(str){
+            var oDate = new Date(str),
+                oYear = oDate.getFullYear(),//年
+                oMonth = oDate.getMonth()+1,//月
+                oDay = oDate.getDate(),//日
+                oHour = oDate.getHours(),//时
+                oMin = oDate.getMinutes(),//分
+                oSen = oDate.getSeconds(),//秒
+                oFf=oDate.getMilliseconds()//毫秒
+                var oTime = oYear + getzf(oMonth) + getzf(oDay) + getzf(oHour) + getzf(oMin) +getzf(oSen);//最后拼接时间
+            return oTime;
+        };
+        //补0操作
+        function getzf(num){
+            if(parseInt(num) < 10){
+                num = '0'+num;
+            }
+            return num;
+        }
+      var url=this.APT4+'/1623-2'
+      this.$axios.get(url,{
+        params:{
+          showapi_timestamp:times,//客户端时间。 
+          showapi_appid:"97504",//易源应用id
+          showapi_sign:"ff9e442404ae485eb5b5e993bfe42566",//数字签名
+          page:"",
+          question:"地球",
+          isAnswer:true
+        }
+      }).then(res=>{
+        console.log(res.data);
+        this.data=res.data.showapi_res_body.pagebean.contentlist;
+        console.log(this.data);
+      }).catch(err=>{
+        console.log(err);
+      })
+
+    },
+
+    methods: {},
+
+    watch: {}
+
   }
-ul li{
-  float: left;
-  font-size: 20px;
-  width: 100%;
-  list-style: none;
-  line-height: 150px;
-  color: red;
-  text-align: center;
-  background: #eeeeee;
-}
-  ul li:nth-child(2n){
-    background: #bdbdbd;
+
+</script>
+<style lang='scss' scoped>
+  .box{
+    width:100%;
+    >img{
+      width:100%;
+    }
   }
 </style>

@@ -5,8 +5,9 @@
       <router-link tag="div" :to="{path:'/home/basicUse'}">基本使用</router-link>
       <router-link tag="div" :to="{path:'/home/computedk'}">价格计算价格计算</router-link>
       <router-link tag="div" :to="{path:'/home/test001'}">模拟操作</router-link>
-      <router-link tag="div" :to="{path:'/home/test002'}">数据请求</router-link>
-      <router-link tag="div" :to="{path:'/home/test003'}">上拉加载</router-link>
+      <router-link tag="div" :to="{path:'/home/test002'}">聚合数据</router-link>
+      <router-link tag="div" :to="{path:'/home/test003'}">万维易源</router-link>
+      <router-link tag="div" :to="{path:'/home/test004'}">上拉加载</router-link>
     </div>
 
     <router-view class="boxs"></router-view>
