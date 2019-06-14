@@ -1,15 +1,13 @@
-body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select {
+*{
   margin: 0;
   padding: 0
 }
 
 body {
-  /* color:yellow;
-  font-size:12px; */
-  /* font: 12px "宋体", "Arial Narrow", HELVETICA; */
+  font: 12px "宋体", "Arial Narrow", HELVETICA;
   background: #fff;
   /*大于12px时，禁止字体变化。*/
-  /* -webkit-text-size-adjust: 100%; */
+  -webkit-text-size-adjust: 100%;
 }
 
 a {

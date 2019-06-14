@@ -28,7 +28,7 @@
     created() {},
 
     mounted() {
-      this.bus.$emit('loading', true);
+      this.bus.$emit('loading', true);//加载loading
         var url=this.APT4+'/1646-1'
         this.$axios.get(url,{
           params:{
