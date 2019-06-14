@@ -1,4 +1,5 @@
 <template lang="html">
+<!-- 获取全部数据后，前台进行分页 -->
   <div class="yo-scroll"
        :class="{'down':(state===0),'up':(state==1),refresh:(state===2),touch:touching}"
        @touchstart="touchStart($event)"

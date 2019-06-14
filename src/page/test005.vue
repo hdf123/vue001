@@ -1,14 +1,14 @@
 <template>
     <div class="rules">
-        <p class="drop-down" v-if="dropDown">松手刷新数据...</p>
         <div class="bscroll" ref="bscroll">
+            <p class="drop-down" v-if="dropDown">松手刷新数据...</p>
             <div class="bscroll-container">
                 <ul>
                    <li v-for="(item,ind) in 20" :key="ind">{{ind}}</li>
+                    <p class="x" v-if="sss">加载更多...</p>
                 </ul>
             </div>
         </div>
-        <!-- <p class="x">加载更多...</p> -->
     </div>
 </template>
  
@@ -17,7 +17,8 @@ import BScroll from 'better-scroll'
 export default {
     data(){
         return{
-            dropDown:false
+            dropDown:false,
+            sss:false
         }
     },
     mounted(){
@@ -43,6 +44,9 @@ export default {
                     }else{
                         this.dropDown = false
                     }
+                    if(this.scroll.maxScrollY>pos.y+10){
+                        this.sss=true;
+                    }
                 })
                 //touchEnd（手指离开以后触发） 通过这个方法来监听下拉刷新
                 this.scroll.on('touchEnd', (pos) => {
@@ -54,6 +58,7 @@ export default {
                     //上拉加载 总高度>下拉的高度+10 触发加载更多
                     if(this.scroll.maxScrollY>pos.y+10){
                         console.log("加载更多")
+                        this.sss=false;
                         //使用refresh 方法 来更新scroll  解决无法滚动的问题
                         this.scroll.refresh()
                     }

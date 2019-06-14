@@ -1,75 +1,43 @@
 <template>
-  <div class='requestk'>
-    <div class="wrapper" ref="wrapper">
-      <ul class="main">
-        <li v-for="(item, index) in 50" :key="index">{{index+1}}</li>
-        <!-- <li v-for="(item, index) in data" :key="index">{{index+1}}{{item.content}}</li> -->
-        <div class="loading" v-show="!loading">加载中....</div>
-      </ul>
+    <div class="rules">
+        <div class="bscroll" ref="bscroll">
+            <p class="drop-down" v-if="dropDown">松手刷新数据...</p>
+            <div class="bscroll-container">
+                <ul>
+                   <li v-for="(item,ind) in data" :key="ind">{{ind+1}}--{{item.content}}</li>
+                   <!-- <li v-for="(item,ind) in 20" :key="ind">{{ind}}</li> -->
+                    <p class="x" v-if="sss">加载更多...</p>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
-
+ 
 <script>
 import BScroll from 'better-scroll'
-  export default {
-    name:'',
-    props:[''],
-    data () {
-      return {
-        data:[],
-        page:1,//页数
-        pagesize:10,//每次获取数量
-        loading:true,
-      };
-    },
-
-    components: {},
-
-    computed: {},
-
-    beforeMount() {},
-
-    created(){
-      this.$nextTick(() => {
-        if (!this.scroll) {
-          this.scroll = new BScroll('.wrapper', {
-            pullDownRefresh:{
-              threshold: 80,
-              stop:10
-            }
-          })
-          this.scroll.on('touchEnd', (pos) => {
-            // 下拉刷新
-            if (pos.y > 50) {
-              console.log(3333333333333333);
-              // this.kdata()
-            }
-            //上拉加载
-            if(pos.y <= (this.scroll.maxScrollY + 100) && this.loading) {
-              this.loading = false
-              this.page++;
-              this.kdata();
-              setTimeout(()=>{
-                this.loading = true
-              },1000)
-            }
-          })
-        }else{
-          this.scroll.refresh()
+export default {
+    data(){
+        return{
+          data:[],
+          page:1,//页数
+          pagesize:5,//每次获取数量
+          loading:true,
+          dropDown:false,
+          sss:false
         }
-      })
     },
-
-    mounted() {
+    mounted(){
       this.kdata()
-      console.log(this.data);
+      this.scrollFn()
     },
-
-    methods: {
+    methods:{
       kdata(){
         var times = Date.parse( new Date() ).toString();
             times = times.substr(0,10);
+            console.log(times);
+      // var times = (new Date()).valueOf(); //1280977330748
+      //     times = new Date().getTime();   // 同上
+      //     times = Math.round(new Date().getTime()/1000).toString();
         var url=this.APT1+'/joke/content/list.php'
         this.$axios.get(url,{
           params:{
@@ -80,37 +48,86 @@ import BScroll from 'better-scroll'
             time:times//	时间戳（10位）
           }
         }).then(res=>{
-          console.log(res.data);
           // if(res.data.resultcode==112) alert(res.data.reason);
+          this.page++;
           this.data=this.data.concat(res.data.result.data)
           this.$set(this.data)
+          this.loading = true
+          
         }).catch(err=>{
           console.log(err);
         })
-      }
-
-    },
-
-    watch: {}
-
-  }
-
+      },
+        scrollFn(){
+            this.$nextTick(() => {
+                if (!this.scroll) {
+                    this.scroll = new BScroll(this.$refs.bscroll, {
+                        click: true,
+                        scrollY: true,
+                        probeType: 3
+                    });
+                }else{
+                    this.scroll.refresh();
+                }
+                this.scroll.on('scroll', (pos) => {
+                    console.log(pos.y,this.dropDown)
+                    //如果下拉超过50px 就显示下拉刷新的文字
+                    if(pos.y>50){
+                        this.dropDown = true
+                    }else{
+                        this.dropDown = false
+                    }
+                    if(this.scroll.maxScrollY>pos.y+10 && this.loading){
+                        this.kdata()
+                        this.sss=true;
+                        this.loading=false;
+                    }
+                })
+                //touchEnd（手指离开以后触发） 通过这个方法来监听下拉刷新
+                this.scroll.on('touchEnd', (pos) => {
+                    // 下拉动作
+                    if(pos.y > 50){
+                        console.log("下拉刷新成功")
+                        this.dropDown = false
+                    }
+                    //上拉加载 总高度>下拉的高度+10 触发加载更多
+                    if(this.scroll.maxScrollY>pos.y+10){
+                        console.log("加载更多")
+                        this.sss=false;
+                        //使用refresh 方法 来更新scroll  解决无法滚动的问题
+                        this.scroll.refresh()
+                    }
+                    console.log(this.scroll.maxScrollY+"总距离----下拉的距离"+pos.y)
+                })
+                console.log(this.scroll.maxScrollY)
+            });
+        }
+    }
+}
 </script>
-<style lang='scss' scoped>
-  .requestk{
-    width:100%;
-    height:93%;
-    overflow: auto;
-  }
-  .wrapper{
+ 
+ 
+<style scoped>
+.rules{
+    position: relative;
+}
+.bscroll{
     width: 100%;
-    height: 100%;
+    height:500px;
     overflow: hidden;
-  }
-  .main{
-      >li{
-        height:100px;
-        border-top:1px solid red;
-      }
-  }
+}
+.bscroll-container{
+    background: #ff0000;
+}
+.drop-down{
+    position: absolute;
+    top:0px;
+    lefT:0px;
+    width: 100%;
+    height: 50px;
+    line-height:50px;
+    text-align: center;
+    font-size:0.8rem;
+    color:#CCC;
+}
 </style>

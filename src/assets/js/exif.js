@@ -1,3 +1,4 @@
+// 上传图片
 (function() {
 
     var debug = false;

@@ -20,9 +20,7 @@
         msg2: 'def'
       };
     },
-    filters:{
-      
-    },
+    filters:{},
     components: {},
 
     computed: {},

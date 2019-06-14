@@ -8,6 +8,7 @@ import './assets/css/base.css'
 import './assets/css/icon/iconfont.css'
 import 'lib-flexible/flexible'
 import scroll from './assets/js/scroll.js'
+import wan_time from './assets/js/wan_time.js'
 //挂载swiper
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import 'swiper/dist/css/swiper.css'
@@ -23,6 +24,8 @@ Vue.prototype.APT2='/api2'
 Vue.prototype.APT3='/api3'
 Vue.prototype.APT4='/api4'
 
+Vue.prototype.wan_time = wan_time ;
+Vue.prototype.bus = new Vue;
 
 import * as filters from './assets/js/filters'
 Object.keys(filters).forEach(key => {
@@ -31,18 +34,8 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 Vue.use(scroll)
+// Vue.use(wan_time)
 Vue.use(VueAwesomeSwiper)
-
-window.onresize = setHtmlFontSize;
-function setHtmlFontSize(){
-    const htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
-    const htmlDom = document.getElementsByTagName('html')[0];
-    htmlDom.style.fontSize = htmlWidth / 10 + 'px';
-};
-setHtmlFontSize();
-
-
-
 
 /* eslint-disable no-new */
 new Vue({

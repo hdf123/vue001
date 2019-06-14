@@ -10,7 +10,8 @@ import test004 from '@/page/test004'
 import test005 from '@/page/test005'
 import joke from '@/page/joke'
 import constellation from '@/page/constellation'
-import aa from '@/page/aa'
+import wan_classic_statement from '@/page/wan_classic_statement'
+import wan_riddle from '@/page/wan_riddle'
 
 Vue.use(Router)
 export default new Router({
@@ -29,10 +30,15 @@ export default new Router({
             {path:"/",redirect:{name:'joke'}},//重新定向
             {path: '/home/test002/joke',name: 'joke',component: joke},
             {path: '/home/test002/constellation',name: 'constellation',component: constellation},
-            {path: '/home/test002/aa',name: 'aa',component: aa}
           ]
         },
-        {path: '/home/test003',name: 'test003',component: test003},
+        {path: '/home/test003',name: 'test003',component: test003,
+          children:[
+            {path:"/",redirect:{name:'wan_classic_statement'}},//重新定向
+            {path: '/home/test003/wan_classic_statement',name: 'wan_classic_statement',component: wan_classic_statement},
+            {path: '/home/test003/wan_riddle',name: 'wan_riddle',component: wan_riddle},
+          ]
+        },
         {path: '/home/test004',name: 'test004',component: test004},
         {path: '/home/test005',name: 'test005',component: test005},
       ]
