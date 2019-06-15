@@ -2,7 +2,6 @@
   <div class='requestk'>
     <div class="box">
       <router-link tag="div" :to="{path:'/home/test003/wan_classic_statement'}">经典语句</router-link>
-      <router-link tag="div" :to="{path:'/home/test003/wan_riddle'}">谜语</router-link>
     </div>
     <router-view class="boxks"></router-view>
   </div>

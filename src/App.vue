@@ -19,5 +19,7 @@
 </script>
   
 <style>
-
+  .hea{
+    text-align: center;
+  }
 </style>

@@ -1,5 +1,9 @@
 <template>
   <div class=''>
+    <div class="title_box">
+      <input type="text" class="inps" @keyup.13="enter()" ref="getValue" placeholder="请输入关键字" />
+      <button class="btn" @click="making">确定</button>
+    </div>
     <div class="box" v-for="(item,ind) in data" :key="ind">
       <h3>{{item.name}}</h3>
       <div v-for="(items,inds) in item.mottoList" :key="inds">
@@ -15,7 +19,8 @@
     props:[''],
     data () {
       return {
-          data:[],
+        content:'',
+        data:[],
       };
     },
 
@@ -27,16 +32,25 @@
 
     created() {},
 
-    mounted() {
-      this.bus.$emit('loading', true);//加载loading
-        var url=this.APT4+'/1646-1'
-        this.$axios.get(url,{
+    mounted() {},
+
+    methods: {
+      enter(){
+        this.making();
+      },
+      making:function(){
+        this.content=this.$refs.getValue.value;
+        this.ajaxds();
+      },
+      ajaxds:function(){
+        this.bus.$emit('loading', true);//加载loading
+        this.$axios.get(this.APT4+'/1646-1',{
           params:{
           showapi_timestamp:this.wan_time.times(),//客户端时间。 
           showapi_appid:"97504",//易源应用id
           showapi_sign:"ff9e442404ae485eb5b5e993bfe42566",//数字签名
           page:"",//页码
-          name:"地球"//关键词
+          name:this.content//关键词
           }
         }).then(res=>{
           console.log(res.data);
@@ -46,9 +60,8 @@
         }).catch(err=>{
           console.log(err);
         })
+      }
     },
-
-    methods: {},
 
     watch: {}
 
@@ -56,6 +69,17 @@
 
 </script>
 <style lang='scss' scoped>
+  .title_box{
+    display: flex;
+    height:70px;
+    >input{
+      width:75%;
+      outline: none;
+    }
+    >button{
+      width:25%;
+    }
+  }
   .box{
     border-bottom:1px solid red;
     >h3{

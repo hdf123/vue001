@@ -5,8 +5,7 @@
             <div class="bscroll-container">
                 <ul>
                    <li v-for="(item,ind) in data" :key="ind">{{ind+1}}--{{item.content}}</li>
-                   <!-- <li v-for="(item,ind) in 20" :key="ind">{{ind}}</li> -->
-                    <p class="x" v-if="sss">加载更多...</p>
+                    <p class="x" v-if="more">加载更多...</p>
                 </ul>
             </div>
         </div>
@@ -20,13 +19,13 @@ export default {
         return{
           data:[],
           page:1,//页数
-          pagesize:5,//每次获取数量
-          loading:true,
+          pagesize:10,//每次获取数量
           dropDown:false,
-          sss:false
+          more:false
         }
     },
     mounted(){
+      this.bus.$emit('loading', true);//加载loading
       this.kdata()
       this.scrollFn()
     },
@@ -35,9 +34,9 @@ export default {
         var times = Date.parse( new Date() ).toString();
             times = times.substr(0,10);
             console.log(times);
-      // var times = (new Date()).valueOf(); //1280977330748
-      //     times = new Date().getTime();   // 同上
-      //     times = Math.round(new Date().getTime()/1000).toString();
+        // var times = (new Date()).valueOf(); //1280977330748
+        //     times = new Date().getTime();   // 同上
+        //     times = Math.round(new Date().getTime()/1000).toString();
         var url=this.APT1+'/joke/content/list.php'
         this.$axios.get(url,{
           params:{
@@ -45,14 +44,15 @@ export default {
             page:this.page,//当前页数,默认1
             pagesize:this.pagesize,	//每次返回条数,默认1,最大20
             sort:'desc',//类型，desc:指定时间之前发布的，asc:指定时间之后发布的
-            time:times//	时间戳（10位）
+            time:times//时间戳（10位）
           }
         }).then(res=>{
-          // if(res.data.resultcode==112) alert(res.data.reason);
-          this.page++;
+          if(res.data.resultcode==112) alert(res.data.reason);
+          this.bus.$emit('loading', false);//加载loading
           this.data=this.data.concat(res.data.result.data)
+          console.log(this.data);
           this.$set(this.data)
-          this.loading = true
+          this.page++;
           
         }).catch(err=>{
           console.log(err);
@@ -70,17 +70,15 @@ export default {
                     this.scroll.refresh();
                 }
                 this.scroll.on('scroll', (pos) => {
-                    console.log(pos.y,this.dropDown)
+                    // console.log(pos.y,this.dropDown)
                     //如果下拉超过50px 就显示下拉刷新的文字
                     if(pos.y>50){
                         this.dropDown = true
                     }else{
                         this.dropDown = false
                     }
-                    if(this.scroll.maxScrollY>pos.y+10 && this.loading){
-                        this.kdata()
-                        this.sss=true;
-                        this.loading=false;
+                    if(this.scroll.maxScrollY>pos.y+10){
+
                     }
                 })
                 //touchEnd（手指离开以后触发） 通过这个方法来监听下拉刷新
@@ -93,7 +91,9 @@ export default {
                     //上拉加载 总高度>下拉的高度+10 触发加载更多
                     if(this.scroll.maxScrollY>pos.y+10){
                         console.log("加载更多")
-                        this.sss=false;
+                        this.bus.$emit('loading', true);//加载loading
+                        this.kdata()
+                        this.more=false;
                         //使用refresh 方法 来更新scroll  解决无法滚动的问题
                         this.scroll.refresh()
                     }
@@ -107,17 +107,19 @@ export default {
 </script>
  
  
-<style scoped>
-.rules{
-    position: relative;
-}
+<style lang="scss" scoped>
 .bscroll{
     width: 100%;
-    height:500px;
+    height:100%;
     overflow: hidden;
 }
 .bscroll-container{
     background: #ff0000;
+    li{
+        padding-bottom:20px;
+        padding-top:20px;
+        border-bottom:1px solid lime;/*no*/
+    }
 }
 .drop-down{
     position: absolute;

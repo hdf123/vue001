@@ -16,7 +16,9 @@
       <router-link tag="div" :to="{path:'/home/test002/joke'}">笑话大全</router-link>
       <router-link tag="div" :to="{path:'/home/test002/constellation'}">星座测试</router-link>
     </div> -->
+
     <router-view class="boxks"></router-view>
+
 
   </div>
 </template>
@@ -54,20 +56,9 @@
 
 </script>
 <style lang='scss' scoped>
-  // .box{
-  //   display: flex;
-  //   height:7%;
-  //   >div{
-  //     width:100%;
-  //     height:100%;
-  //     display: flex;
-  //     align-items: center;
-  //     justify-content: center;
-  //     border:1px solid #d6c8c8;
-  //   }
-  // }
   .swiper-container{
       height:7%;
+      overflow: visible;
       >.swiper-slide{
           height:100%;
       }

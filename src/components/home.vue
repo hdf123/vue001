@@ -38,7 +38,6 @@ export default {
     left:auto;
     bottom:100px;
     overflow: auto;
-    background:rgba(99,99,99,0.1);
   }
   .footbar{
     position: absolute;
