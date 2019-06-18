@@ -7,16 +7,10 @@
       <swiper-slide>
         <router-link tag="div" class="ksk" :to="{path:'/home/test002/constellation'}">星座测试</router-link>
       </swiper-slide>
+      <swiper-slide>
+        <router-link tag="div" class="ksk" :to="{path:'/home/test002/book'}">聚合图书</router-link>
+      </swiper-slide>
     </swiper>
-
-
-
-
-    <!-- <div class="box">
-      <router-link tag="div" :to="{path:'/home/test002/joke'}">笑话大全</router-link>
-      <router-link tag="div" :to="{path:'/home/test002/constellation'}">星座测试</router-link>
-    </div> -->
-
     <router-view class="boxks"></router-view>
 
 
@@ -32,7 +26,7 @@
       return {
         swiperOption: {
           autoplay: 3000,
-          slidesPerView : 2
+          slidesPerView : 2.5
         }
       };
     },
@@ -58,12 +52,12 @@
 <style lang='scss' scoped>
   .swiper-container{
       height:7%;
-      overflow: visible;
       >.swiper-slide{
           height:100%;
       }
   }
   .ksk{
+    box-sizing: border-box;
     width:100%;
     height:100%;
     display: flex;

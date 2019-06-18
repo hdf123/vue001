@@ -104,7 +104,7 @@
         })
       },
       movie:function(){
-        var url=this.APT3+'/wepiao/query'
+        var url=this.APT1+'/wepiao/query'
         this.$axios.get(url,{
           params:{
             key:"3de4149fc68371b91e775f98bf5714b6"

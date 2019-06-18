@@ -26,7 +26,8 @@ module.exports = {
         }
       },
       '/api3': {
-        target: 'http://v.juhe.cn',//电影票
+        // http://apis.juhe.cn/goodbook/catalog
+        target: 'http://apis.juhe.cn',//图书
         changeOrigin: true,
         pathRewrite: {
           '^/api3': ''

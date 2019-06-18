@@ -114,7 +114,6 @@ export default {
     overflow: hidden;
 }
 .bscroll-container{
-    background: #ff0000;
     li{
         padding-bottom:20px;
         padding-top:20px;
