@@ -20,9 +20,6 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-  .home>div{
-    width:100%;
-  }
   .headers{
     height:100px;
     display: flex;
@@ -35,13 +32,15 @@ export default {
   .contbar{
     position:absolute;
     top:100px;
-    left:auto;
+    left:0;
+    right:0;
     bottom:100px;
     overflow: auto;
   }
   .footbar{
     position: absolute;
     left:0;
+    right:0;
     bottom:0;
     height:100px;
     display: flex;

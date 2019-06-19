@@ -12,8 +12,8 @@
       <div slot="footer">我是传入的底部</div>
     </cycle>
     star组件
-    <stars class="" :score="a1[0]" :size="b1[0]"></stars>
-    <stars class="" :score="a1[1]" :size="b1[1]"></stars>
+    <stars class="" :score="a1[0]" :size="b1[0]" :menus="c1[0]"></stars>
+    <stars class="" :score="a1[1]" :size="b1[1]" :menus="c1[1]"></stars>
   </div>
 </template>
 
@@ -30,8 +30,9 @@
         listdata:[1,2,3,4,5],
         out:"",
         as:"",
-        a1:[3,2],
-        b1:[20,16]
+        a1:[3,4],
+        b1:[20,16],
+        c1:[5,10]
       };
     },
     components: {
@@ -74,6 +75,7 @@
     color:white;
     font-size:30px;
     background:#FFB94A;
+    
   }
   .fatherTheSon_box,.sonTheFather_box,.cycle_box,.stars_box{
     width:100%;

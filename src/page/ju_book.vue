@@ -29,22 +29,22 @@
 
     mounted() {
       this.bus.$emit('loading', true);//加载loading
-        var url=this.APT3+'/goodbook/catalog'
-        this.$axios.get(url,{
-          params:{
-            key:"29fbc7faebdc36dded9c3ebd3b5f286a",
-            dtype:'json',
-          }
-        }).then(res=>{
-          this.bus.$emit('loading', false);//加载loading
-          if(res.data.resultcode != 200) return alert(res.data.reason);
-          console.log(res.data);
-          this.data=res.data.result
-          console.log(this.data);
-          
-        }).catch(err=>{
-          console.log(err);
-        })
+      var url=this.APT3+'/goodbook/catalog'
+      this.$axios.get(url,{
+        params:{
+          key:"29fbc7faebdc36dded9c3ebd3b5f286a",
+          dtype:'json',
+        }
+      }).then(res=>{
+        this.bus.$emit('loading', false);//加载loading
+        if(res.data.resultcode != 200) return alert(res.data.reason);
+        console.log(res.data);
+        this.data=res.data.result
+        console.log(this.data);
+        
+      }).catch(err=>{
+        console.log(err);
+      })
     },
 
     methods: {

@@ -9,9 +9,13 @@
   export default{
     props:{
       score:{
+        // type:[String, Number,Array,Boolean,Object,Function,Symbol],//多个可能的类型
         type:Number
       },
       size:{
+        type:Number
+      },
+      menus:{
         type:Number
       }
     },
@@ -26,7 +30,7 @@
       for(let i=0;i<this.score;i++){
         arr.push("icon-xingxing")
       }
-      for(let i=0;i<5-this.score;i++){
+      for(let i=0;i<this.menus-this.score;i++){
         arr.push("icon-xingxing1")
       }
       this.stars=arr;

@@ -7,11 +7,12 @@ import test001 from '@/page/test001'
 import test002 from '@/page/test002'
 import test003 from '@/page/test003'
 import test004 from '@/page/test004'
-import test005 from '@/page/test005'
 import ju_joke from '@/page/ju_joke'
 import ju_constellation from '@/page/ju_constellation'
 import ju_book from '@/page/ju_book'
 import ju_books from '@/page/ju_books'
+import loadinga from '@/page/loadinga'
+import loadingb from '@/page/loadingb'
 import wan_classic_statement from '@/page/wan_classic_statement'
 
 Vue.use(Router)
@@ -44,8 +45,13 @@ export default new Router({
             {path: '/home/test003/wan_classic_statement',name: 'wan_classic_statement',component: wan_classic_statement},
           ]
         },
-        {path: '/home/test004',name: 'test004',component: test004},
-        {path: '/home/test005',name: 'test005',component: test005},
+        {path: '/home/test004',name: 'test004',component: test004,
+          children:[
+            {path:"/",redirect:{name:'loadinga'}},//重新定向
+            {path: '/home/test004/loadinga',name: 'loadinga',component: loadinga},
+            {path: '/home/test004/loadingb',name: 'loadingb',component: loadingb},
+          ]
+        }
       ]
     }
   ]
