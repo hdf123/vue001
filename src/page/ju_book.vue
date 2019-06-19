@@ -10,7 +10,6 @@
 </template>
 
 <script>
-
   export default {
     name:'',
     props:[''],
@@ -29,6 +28,7 @@
     created() {},
 
     mounted() {
+      this.bus.$emit('loading', true);//加载loading
         var url=this.APT3+'/goodbook/catalog'
         this.$axios.get(url,{
           params:{
@@ -36,9 +36,9 @@
             dtype:'json',
           }
         }).then(res=>{
-          console.log(res.data);
-          if(res.data.resultcode != 200) alert(res.data.reason);
           this.bus.$emit('loading', false);//加载loading
+          if(res.data.resultcode != 200) return alert(res.data.reason);
+          console.log(res.data);
           this.data=res.data.result
           console.log(this.data);
           
