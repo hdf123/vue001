@@ -48,11 +48,15 @@ export default {
           }
         }).then(res=>{
           if(res.data.resultcode==112) alert(res.data.reason);
-          this.bus.$emit('loading', false);//加载loading
+          var _this=this;
+          setTimeout(function(){
+             _this.bus.$emit('loading', false);//加载loading
+          },1000);
           this.data=this.data.concat(res.data.result.data)
           console.log(this.data);
           this.$set(this.data)
           this.page++;
+          this.scroll.finishPullUp();//上拉加载完成后
           
         }).catch(err=>{
           console.log(err);
@@ -60,46 +64,39 @@ export default {
       },
         scrollFn(){
             this.$nextTick(() => {
-                if (!this.scroll) {
-                    this.scroll = new BScroll(this.$refs.bscroll, {
-                        click: true,
-                        scrollY: true,
-                        probeType: 3,
-                        pullUpLoad: {
-                            threshold:-50
-                        }
-                    });
-                }else{
-                    this.scroll.refresh();
-                }
+                this.scroll = new BScroll(this.$refs.bscroll, {
+                    scrollY: true,
+                    pullDownRefresh: {//下拉配置
+                        threshold: 50,
+                        stop:20
+                    },
+                    pullUpLoad: {//上拉配置
+                        threshold: -50
+                    },
+                });
                 this.scroll.on('scroll', (pos) => {
-                    // console.log(pos.y,this.dropDown)
                     //如果下拉超过50px 就显示下拉刷新的文字
                     if(pos.y>50){
                         this.dropDown = true
                     }else{
-                        this.dropDown = false
+                        var _this=this;
+                        setTimeout(function(){
+                            _this.dropDown = false;
+                        },3000);
+                        // setTimeout(this.kks,3000);
                     }
                 })
-                //touchEnd（手指离开以后触发） 通过这个方法来监听下拉刷新
-                this.scroll.on('touchEnd', (pos) => {
-                    // 下拉动作
-                    if(pos.y > 50){
-                        console.log("下拉刷新成功")
-                        this.dropDown = false
-                    }
-                    //上拉加载 总高度>下拉的高度+10 触发加载更多
-                    if(this.scroll.maxScrollY>pos.y+10){
-                        console.log("加载更多")
-                        this.bus.$emit('loading', true);//加载loading
-                        this.kdata()
-                        this.more=false;
-                        //使用refresh 方法 来更新scroll  解决无法滚动的问题
-                        this.scroll.refresh()
-                    }
-                    console.log(this.scroll.maxScrollY+"总距离----下拉的距离"+pos.y)
+                this.scroll.on('pullingDown', (pos) => {//下拉
+                    this.bus.$emit('loading', true);//加载loading
+                    this.kdata()
+                    // setTimeout( this.setData,3000)//获取数据方法   
+                }),
+                this.scroll.on('pullingUp', () => {// 上拉
+                    this.bus.$emit('loading', true);//加载loading
+                    this.kdata()
+                    // setTimeout( this.setData,3000)//获取数据方法   
                 })
-                console.log(this.scroll.maxScrollY)
+                this.scroll.refresh();//重新计算 better-scroll
             });
         }
     }

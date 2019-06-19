@@ -2,13 +2,13 @@
   <div class='requestk'>
     <swiper :options="swiperOption" ref="mySwiper">
       <swiper-slide>
-        <router-link tag="div" class="ksk" :to="{path:'/home/test002/joke'}">笑话大全</router-link>
+        <router-link tag="div" class="ksk" :to="{path:'/home/test002/ju_joke'}">笑话大全</router-link>
       </swiper-slide>
       <swiper-slide>
-        <router-link tag="div" class="ksk" :to="{path:'/home/test002/constellation'}">星座测试</router-link>
+        <router-link tag="div" class="ksk" :to="{path:'/home/test002/ju_constellation'}">星座测试</router-link>
       </swiper-slide>
       <swiper-slide>
-        <router-link tag="div" class="ksk" :to="{path:'/home/test002/book'}">聚合图书</router-link>
+        <router-link tag="div" class="ksk" :to="{path:'/home/test002/ju_book'}">聚合图书</router-link>
       </swiper-slide>
     </swiper>
     <router-view class="boxks"></router-view>

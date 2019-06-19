@@ -1,56 +1,57 @@
 <template>
   <div class='requestk'>
     <div class="title_box">
+      <!-- @keyup.13="enter()"   @keyup.enter="enter()" -->
       <input type="text" class="inps" @keyup.13="enter()" ref="getValue" placeholder="请输入你的星座" />
       <button class="btn" @click="making">今日运势</button>
     </div>
-      <ul v-show="isShow">
-        <li>
-          <div>星座名称：</div>
-          <div>{{data.name}}</div>
-        </li>
-        <li>
-          <div>日期：</div>
-          <div>{{data.datetime}}</div>
-        </li>
-        <li>
-          <div>综合指数：</div>
-          <div>{{data.all}}</div>
-        </li>
-        <li>
-          <div>幸运色：</div>
-          <div>{{data.color}}</div>
-        </li>
-        <li>
-          <div>健康指数：</div>
-          <div>{{data.health}}</div>
-        </li>
-        <li>
-          <div>爱情指数：</div>
-          <div>{{data.love}}</div>
-        </li>
-        <li>
-          <div>财运指数：</div>
-          <div>{{data.money}}</div>
-        </li>
-        <li>
-          <div>工作指数：</div>
-          <div>{{data.work}}</div>
-        </li>
-        <li>
-          <div>幸运数字：</div>
-          <div>{{data.number}}</div>
-        </li>
-        <li>
-          <div>速配星座：</div>
-          <div>{{data.QFriend}}</div>
-        </li>
-        <li>
-          <div>今日概述：</div>
-          <div>{{data.summary}}</div>
-        </li>
-      </ul>
-      <div @click="movie()" class="movie">看电影去</div>
+    <ul v-show="isShow">
+      <li>
+        <div>星座名称：</div>
+        <div>{{data.name}}</div>
+      </li>
+      <li>
+        <div>日期：</div>
+        <div>{{data.datetime}}</div>
+      </li>
+      <li>
+        <div>综合指数：</div>
+        <div>{{data.all}}</div>
+      </li>
+      <li>
+        <div>幸运色：</div>
+        <div>{{data.color}}</div>
+      </li>
+      <li>
+        <div>健康指数：</div>
+        <div>{{data.health}}</div>
+      </li>
+      <li>
+        <div>爱情指数：</div>
+        <div>{{data.love}}</div>
+      </li>
+      <li>
+        <div>财运指数：</div>
+        <div>{{data.money}}</div>
+      </li>
+      <li>
+        <div>工作指数：</div>
+        <div>{{data.work}}</div>
+      </li>
+      <li>
+        <div>幸运数字：</div>
+        <div>{{data.number}}</div>
+      </li>
+      <li>
+        <div>速配星座：</div>
+        <div>{{data.QFriend}}</div>
+      </li>
+      <li>
+        <div>今日概述：</div>
+        <div>{{data.summary}}</div>
+      </li>
+    </ul>
+    <div @click="movie()" class="movie">看电影去</div>
   </div>
 </template>
 
@@ -148,9 +149,11 @@
     }
   }
   ul{
+    height:calc(100% - 150px);
+    overflow: auto;
     >li{
       display: flex;
-      padding:0 20px;
+      padding:15px 20px;
       border-bottom:1px solid rgba(199,0,0,0.5);
       >div:nth-child(1){
         width:25%;

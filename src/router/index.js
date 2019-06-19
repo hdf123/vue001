@@ -8,10 +8,10 @@ import test002 from '@/page/test002'
 import test003 from '@/page/test003'
 import test004 from '@/page/test004'
 import test005 from '@/page/test005'
-import joke from '@/page/ju_joke'
-import constellation from '@/page/ju_constellation'
-import book from '@/page/ju_book'
-import books from '@/page/ju_books'
+import ju_joke from '@/page/ju_joke'
+import ju_constellation from '@/page/ju_constellation'
+import ju_book from '@/page/ju_book'
+import ju_books from '@/page/ju_books'
 import wan_classic_statement from '@/page/wan_classic_statement'
 
 Vue.use(Router)
@@ -28,12 +28,12 @@ export default new Router({
         {path: '/home/test001',name: 'test001',component: test001},
         {path: '/home/test002',name: 'test002',component: test002,
           children:[
-            {path:"/",redirect:{name:'joke'}},//重新定向
-            {path: '/home/test002/joke',name: 'joke',component: joke},
-            {path: '/home/test002/constellation',name: 'constellation',component: constellation},
-            {path: '/home/test002/book',name: 'book',component: book,
+            {path:"/",redirect:{name:'ju_joke'}},//重新定向
+            {path: '/home/test002/ju_joke',name: 'ju_joke',component: ju_joke},
+            {path: '/home/test002/ju_constellation',name: 'ju_constellation',component: ju_constellation},
+            {path: '/home/test002/ju_book',name: 'ju_book',component: ju_book,
               children:[
-                {path: '/home/test002/book/books',name: 'books',component: books},
+                {path: '/home/test002/ju_book/ju_books',name: 'ju_books',component: ju_books},
               ]
             }
           ]
