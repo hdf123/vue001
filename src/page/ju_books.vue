@@ -10,7 +10,6 @@
     </ul>
     <div class="few_pages">
       <button @click="previous">上一页</button>
-      <input type="text" @keyup.enter="enter()" ref="getValue" placeholder="请输入要跳转的页数">
       <button @click="nexts">下一页</button>
     </div>
   </div>
@@ -25,7 +24,8 @@
           datas:[],
           imgks:require('../assets/img/loadinga.gif'),//图片错误时显示的图片
           pn:0,////数据返回起始
-          rn:5
+          rn:5,
+          menu:1
       };
     },
 
@@ -43,24 +43,15 @@
     },
 
     methods: {
-      enter(){
-        this.making();
-      },
-      making(){
-        var contentk=this.$refs.getValue.value;
-        console.log(contentk);
-        // this.dataks();
-      },
       previous(){//上一页
-        console.log(this.pn);
-        this.pn=this.pn/this.rn-1;
+        this.pn=this.pn-this.rn;
         console.log(this.pn);
         this.dataks();
       },
       nexts:function(){//下一页
-        this.pn=(this.pn+1)*this.rn;
-        
+        this.pn=this.pn+this.rn;
         this.dataks();
+        console.log(this.pn);
       },
       dataks:function(){
         var url=this.APT3+'/goodbook/query'
@@ -124,9 +115,6 @@
       left: 0;
       bottom:0;
       >button{
-        width:20%;
-      }
-      >input{
         width:50%;
       }
     }

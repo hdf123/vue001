@@ -5,7 +5,7 @@
             <div class="bscroll-container">
                 <ul>
                    <li v-for="(item,ind) in data" :key="ind">{{ind+1}}--{{item.content}}</li>
-                    <p class="x" v-if="more">加载更多...</p>
+                    <p class="prompt" v-if="more">松开加载更多...</p>
                 </ul>
             </div>
         </div>
@@ -48,11 +48,16 @@ export default {
           }
         }).then(res=>{
           if(res.data.resultcode==112) alert(res.data.reason);
-          this.bus.$emit('loading', false);//加载loading
+          var _this=this;
+          setTimeout(function(){
+             _this.bus.$emit('loading', false);//加载loading
+          },1000);
           this.data=this.data.concat(res.data.result.data)
           console.log(this.data);
           this.$set(this.data)
           this.page++;
+          this.more=false;
+          this.scroll.finishPullUp();//上拉加载完成后
           
         }).catch(err=>{
           console.log(err);
@@ -60,46 +65,42 @@ export default {
       },
         scrollFn(){
             this.$nextTick(() => {
-                if (!this.scroll) {
-                    this.scroll = new BScroll(this.$refs.bscroll, {
-                        click: true,
-                        scrollY: true,
-                        probeType: 3,
-                        pullUpLoad: {
-                            threshold:-50
-                        }
-                    });
-                }else{
-                    this.scroll.refresh();
-                }
+                this.scroll = new BScroll(this.$refs.bscroll, {
+                    scrollY: true,
+                    pullDownRefresh: {//下拉配置
+                        threshold: 50,
+                        stop:20
+                    },
+                    pullUpLoad: {//上拉配置
+                        threshold: -35
+                    },
+                });
                 this.scroll.on('scroll', (pos) => {
-                    // console.log(pos.y,this.dropDown)
-                    //如果下拉超过50px 就显示下拉刷新的文字
-                    if(pos.y>50){
+                    if(pos.y>50){//如果下拉超过50px 就显示下拉刷新的文字
                         this.dropDown = true
                     }else{
-                        this.dropDown = false
+                        var _this=this;
+                        setTimeout(function(){
+                            _this.dropDown = false;
+                        },3000);
                     }
+                    // console.log(this.scroll.maxScrollY)
+                    // if(this.scroll.maxScrollY>pos.y+10){
+                    //     console.log("加载更多")
+                    // }
                 })
-                //touchEnd（手指离开以后触发） 通过这个方法来监听下拉刷新
-                this.scroll.on('touchEnd', (pos) => {
-                    // 下拉动作
-                    if(pos.y > 50){
-                        console.log("下拉刷新成功")
-                        this.dropDown = false
-                    }
-                    //上拉加载 总高度>下拉的高度+10 触发加载更多
-                    if(this.scroll.maxScrollY>pos.y+10){
-                        console.log("加载更多")
-                        this.bus.$emit('loading', true);//加载loading
-                        this.kdata()
-                        this.more=false;
-                        //使用refresh 方法 来更新scroll  解决无法滚动的问题
-                        this.scroll.refresh()
-                    }
-                    console.log(this.scroll.maxScrollY+"总距离----下拉的距离"+pos.y)
+                this.scroll.on('pullingDown', () => {//下拉
+                    this.bus.$emit('loading', true);//加载loading
+                    this.kdata()
+                    this.dropDown=true;
+                    console.log(456);
+                }),
+                this.scroll.on('pullingUp', () => {// 上拉
+                    this.bus.$emit('loading', true);//加载loading
+                    this.kdata()
+                    this.more=true;
                 })
-                console.log(this.scroll.maxScrollY)
+                this.scroll.refresh();//重新计算 better-scroll
             });
         }
     }
@@ -108,27 +109,33 @@ export default {
  
  
 <style lang="scss" scoped>
-.bscroll{
-    width: 100%;
-    height:100%;
-    overflow: hidden;
-}
-.bscroll-container{
-    li{
-        padding-bottom:20px;
-        padding-top:20px;
-        border-bottom:1px solid lime;/*no*/
+    .bscroll{
+        width: 100%;
+        height:100%;
+        overflow: hidden;
     }
-}
-.drop-down{
-    position: absolute;
-    top:0px;
-    lefT:0px;
-    width: 100%;
-    height: 50px;
-    line-height:50px;
-    text-align: center;
-    font-size:0.8rem;
-    color:#CCC;
-}
+    .bscroll-container{
+        li{
+            padding-bottom:20px;
+            padding-top:20px;
+            border-bottom:1px solid lime;/*no*/
+        }
+    }
+    .drop-down{
+        position: absolute;
+        top:0px;
+        lefT:0px;
+        width: 100%;
+        height: 50px;
+        line-height:50px;
+        text-align: center;
+        font-size:0.8rem;
+        color:#CCC;
+    }
+    .prompt{
+        font-size:40px;
+        text-align: center;
+        padding:25px 0;
+        color:rgba(0,0,0,0.6);
+    }
 </style>

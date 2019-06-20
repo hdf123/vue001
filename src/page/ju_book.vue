@@ -49,7 +49,7 @@
 
     methods: {
         book:function(menu){
-            this.$router.push({ name: 'books', query: { userId: menu.id }})
+            this.$router.push({ name: 'ju_books', query: { userId: menu.id }})
         }
     },
 
