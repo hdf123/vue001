@@ -3,7 +3,8 @@
     <ul>
         <li v-for="(item,ind) in datas" :key="ind">
             <h3>{{ind+1}}:{{item.title}}</h3>
-            <img class="imgks" src="" v-real-img="item.img" :default-img="imgks" alt="">
+            <!--v-real-img 就是刚刚定义的指令，绑定的为真实要显示的图片地址。:default-img为默认图片地址-->
+            <img class="imgks" src="" v-real-img="item.img" :default-img="require('../assets/img/loadinga.gif')" alt="">
             <div>{{item.catalog}}</div>
             <p>{{item.reading}}</p>
         </li>
@@ -22,7 +23,6 @@
     data () {
       return {
           datas:[],
-          imgks:require('../assets/img/loadinga.gif'),//图片错误时显示的图片
           pn:0,////数据返回起始
           rn:5,
           menu:1
