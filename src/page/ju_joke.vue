@@ -37,7 +37,8 @@ export default {
         // var times = (new Date()).valueOf(); //1280977330748
         //     times = new Date().getTime();   // 同上
         //     times = Math.round(new Date().getTime()/1000).toString();
-        var url=this.APT1+'/joke/content/list.php'
+        var url='/api1/joke/content/list.php'
+        // var url=this.APT1+'/joke/content/list.php'
         this.$axios.get(url,{
           params:{
             key:"e280d4235744d275aa6ca4fda0ae182e",
