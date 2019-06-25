@@ -44,7 +44,7 @@
       },
       ajaxds:function(){
         this.bus.$emit('loading', true);//加载loading
-        this.$axios.get(this.APT4+'/1646-1',{
+        this.$axios.get('/api4/1646-1',{
           params:{
           showapi_timestamp:this.wan_time.times(),//客户端时间。 
           showapi_appid:"97504",//易源应用id

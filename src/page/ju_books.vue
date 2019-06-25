@@ -54,8 +54,7 @@
         console.log(this.pn);
       },
       dataks:function(){
-        var url=this.APT3+'/goodbook/query'
-        this.$axios.get(url,{
+        this.$axios.get('/api3/goodbook/query',{
         params:{
             key:"29fbc7faebdc36dded9c3ebd3b5f286a",
             dtype:'json',//返回数据的格式,xml或json，默认json

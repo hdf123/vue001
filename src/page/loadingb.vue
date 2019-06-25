@@ -1,100 +1,84 @@
 <template>
-  <div class=''>
-        <div class="bscroll" ref="bscroll">
-            <p class="drop-down" v-if="dropDown">松手刷新数据...</p>
-            <div class="bscroll-container">
-                <ul class="ksk">
-                   <li v-for="(item,ind) in data" :key="ind">{{ind+1}}</li>
-                </ul>
-            </div>
-        </div>
-  </div>
+    <div class="content">
+      <scroll :on-refresh="onRefresh" :on-infinite="onInfinite" :isLading="isLading" :reset="reset">
+        <ul>
+          <li v-for="item in oData" :key="item.id">{{item}}</li>
+        </ul>
+      </scroll>
+    </div>
 </template>
 
 <script>
-    import BScroll from 'better-scroll'
-  export default {
-    name:'',
-    props:[''],
-    data () {
-      return {
-          data:20,
-          dropDown:false,
-      };
+export default {
+  name: 'index',
+  data () {
+    return {
+      isLading: 2, // 0:加载完成，1:加载中，2:提示上拉加载
+      reset: 0, // 0初始化
+      paging: {count: 10, page: 1}, // 请求条数和当前请求页
+      // 模拟数据
+      getData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+      oData: []
+    }
+  },
+  mounted () {
+    this.getFun()
+  },
+  methods: {
+    /* 下拉刷新 */
+    onRefresh (done) {
+      this.getFun(0, done)
     },
-
-    components: {},
-
-    computed: {},
-
-    beforeMount() {},
-
-    created() {},
-
-    mounted() {
-        this.$nextTick(() => {
-            this.scroll = new BScroll(this.$refs.bscroll, {
-                scrollY: true,
-                pullDownRefresh: {//下拉配置
-                    threshold: 50,
-                    stop:20
-                },
-                pullUpLoad: {//上拉配置
-                    threshold: -50
-                },
-            });
-            this.scroll.on('scroll', (pos) => {
-                //如果下拉超过50px 就显示下拉刷新的文字
-                if(pos.y>50){
-                    this.dropDown = true
-                }else{
-                    var _this=this;
-                    setTimeout(function(){
-                        _this.dropDown = false;
-                    },3000);
-                    // setTimeout(this.kks,3000);
-                }
-            })
-            this.scroll.on('pullingDown', (pos) => {//下拉
-                this.bus.$emit('loading', true);//加载loading
-                setTimeout( this.setData,3000)//获取数据方法   
-            }),
-            this.scroll.on('pullingUp', () => {// 上拉
-                this.bus.$emit('loading', true);//加载loading
-                setTimeout( this.setData,3000)//获取数据方法   
-            })
-            this.scroll.refresh();//重新计算 better-scroll
-        });
+    /* 上拉加载 */
+    onInfinite (done) {
+      if (this.isLading === 2) {
+        this.paging.page++
+        this.isLading = 1
+        this.getFun(1, done)
+      }
     },
-
-    methods: {
-        kks(){
-            this.dropDown = false
-        },
-        setData(){
-            this.data+=20;
-            console.log("加载完成");
-            this.bus.$emit('loading', false);//加载loading
-            this.scroll.finishPullDown();//下拉加载完成后
-            this.scroll.finishPullUp();//上拉加载完成后
+    // 数据请求
+    /* nums=0:初始化数据 */
+    getFun (nums, done) {
+      if (nums === 0) {
+        this.reset = 0
+        this.oData = []
+        this.isLading = 2
+        this.paging.page = 1
+      }
+      if (this.isLading !== 0) {
+        let pageUp = ((this.paging.page - 1) * this.paging.count)
+        let oSend = this.getData.slice(pageUp, pageUp + this.paging.count)
+        console.log(oSend)
+        if (oSend.length > 0) {
+          this.oData = this.oData.concat(oSend)
+          this.isLading = 2 // 数据请求完成后请求状态修改
+        } else {
+          this.isLading = 0 // 数据请求完成后请求状态修改
         }
-    },
-
-    watch: {}
-
+      }
+      /* 请求完成后初始化上拉或下拉 */
+      if (done) { done() }
+    }
   }
-
+}
 </script>
-<style lang='scss' scoped>
-    .bscroll{
-        width: 100%;
-        height:100%;
-        overflow: hidden;
-    }
-    .ksk{
-        >li{
-            height:80px;
-            border-bottom:1px solid #ca1818;/*no*/
-        }
-    }
+
+<style scoped>
+  .content, ul{
+    position: relative;
+    overflow: hidden;
+  }
+  ul li{
+    font-size: 20px;
+    width: 100%;
+    list-style: none;
+    line-height: 150px;
+    color: red;
+    text-align: center;
+    background: #eeeeee;
+  }
+  ul li:nth-child(2n){
+    background: #bdbdbd;
+  }
 </style>

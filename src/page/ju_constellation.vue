@@ -86,8 +86,7 @@
         this.ajaxds(constellation);
       },
       ajaxds:function(constellation){
-        var url=this.APT2+'/constellation/getAll'
-        this.$axios.get(url,{
+        this.$axios.get('/api2/constellation/getAll',{
           params:{
             key:"97535694b4a86c8a40ecdb47e9f26237",
             consName:constellation,

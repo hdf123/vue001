@@ -2,7 +2,7 @@
   <div id="app">
     <router-view />
     <tips></tips>
-    <loading></loading>  
+    <loading></loading>
   </div>
 </template>
 

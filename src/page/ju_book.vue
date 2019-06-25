@@ -29,8 +29,7 @@
 
     mounted() {
       this.bus.$emit('loading', true);//加载loading
-      var url=this.APT3+'/goodbook/catalog'
-      this.$axios.get(url,{
+      this.$axios.get('/api3/goodbook/catalog',{
         params:{
           key:"29fbc7faebdc36dded9c3ebd3b5f286a",
           dtype:'json',

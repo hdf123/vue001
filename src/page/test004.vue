@@ -2,7 +2,7 @@
   <div class='requestk'>
     <swiper :options="swiperOption" ref="mySwiper">
       <swiper-slide>
-        <router-link tag="div" class="ksk" :to="{path:'/home/test004/loadinga'}">加载一号</router-link>
+        <router-link tag="div" class="ksk" :to="{path:'/home/test004/loadinga'}">加载一号(推荐)</router-link>
       </swiper-slide>
       <swiper-slide>
         <router-link tag="div" class="ksk" :to="{path:'/home/test004/loadingb'}">加载二号</router-link>
