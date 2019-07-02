@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import home from '@/components/home'
 import computedk from '@/page/computedk'
 import basicUse from '@/page/basicUse'
-// import test001 from '@/page/test001'
 import test002 from '@/page/test002'
 import test003 from '@/page/test003'
 import test004 from '@/page/test004'
@@ -26,12 +25,7 @@ export default new Router({
       children:[
         {path: '/home/computedk',name: 'computedk',component: computedk},
         {path: '/home/basicUse',name: 'basicUse',component: basicUse},
-        {
-          path: '/home/test001',
-          name: 'test001',
-          // component: test001
-          component: () => import('@/page/test001'),
-        },
+        {path: '/home/test001',name: 'test001',component: () => import('@/page/test001'),},
         {path: '/home/test002',name: 'test002',component: test002,
           children:[
             {path:"/",redirect:{name:'ju_joke'}},//重新定向
