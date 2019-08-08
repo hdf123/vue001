@@ -7,6 +7,7 @@
     <sonTheFather class="sonTheFather_box" @closesd="closesdk"></sonTheFather>
     <!-- 组件三-->
     <!-- <cycle class="cycle_box">slot不具名插槽传值</cycle> -->
+    
     <cycle class="cycle_box">
       <div slot="header">我是传入的头部</div>
       <div slot="footer">我是传入的底部</div>

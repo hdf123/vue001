@@ -2,7 +2,7 @@
   <div class="content">
     <h3 class="hea">组件三</h3>
     <span v-for="(item, index) in datas" class="btn" :class="{active:index==isShow}" @click="changeColor(index)" :key="index">{{item.city}}</span>
-    
+
     <hr />
 
     <div class="divs">
@@ -12,7 +12,7 @@
     <!-- <slot>slot不具名插槽</slot> -->
     <slot name="header">slot插槽</slot>
     <slot name="footer">slot插槽</slot>
-    
+
   </div>
 </template>
 <script>

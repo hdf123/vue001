@@ -125,6 +125,9 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          >button{
+            padding:0 0.15rem;
+          }
         }
       }
       >td:nth-child(4){

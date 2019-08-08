@@ -6,6 +6,7 @@ import basicUse from '@/page/basicUse'
 import test002 from '@/page/test002'
 import test003 from '@/page/test003'
 import test004 from '@/page/test004'
+import test005 from '@/page/test005'
 import ju_joke from '@/page/ju_joke'
 import ju_constellation from '@/page/ju_constellation'
 import ju_book from '@/page/ju_book'
@@ -50,7 +51,8 @@ export default new Router({
             {path: '/home/test004/loadinga',name: 'loadinga',component: loadinga},
             {path: '/home/test004/loadingb',name: 'loadingb',component: loadingb},
           ]
-        }
+        },
+        {path: '/home/test005',name: 'test005',component: test005}
       ]
     }
   ]
